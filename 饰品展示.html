@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>努力养猪咪 | 中古饰品精选</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B7355;
+            --primary-light: #D4C4B0;
+            --accent: #C9A96E;
+            --bg-cream: #FAF8F5;
+            --bg-warm: #F5F0E8;
+            --text-dark: #2C2416;
+            --text-medium: #5C4D3C;
+            --text-light: #8B7D6B;
+            --shadow: rgba(139, 115, 85, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* 头部 */
+        header {
+            background: linear-gradient(135deg, #2C2416 0%, #4A3C2A 100%);
+            color: #fff;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 169, 110, 0.1) 0%, transparent 70%);
+            animation: shimmer 15s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--primary-light);
+            font-weight: 300;
+            position: relative;
+        }
+
+        /* 导航分类 */
+        .nav-container {
+            background: #fff;
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--primary-light);
+            background: #fff;
+            color: var(--text-medium);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* 分类标题 */
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '◆';
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* 商品网格 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* 商品卡片 */
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(139, 115, 85, 0.2);
+        }
+
+        .product-card.hidden {
+            display: none;
+        }
+
+        /* 图片容器 */
+        .image-wrapper {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%);
+        }
+
+        .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        /* 图片加载占位 */
+        .image-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* 商品信息 */
+        .product-info {
+            padding: 1.25rem;
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.8em;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-price::before {
+            content: '¥';
+            font-size: 0.9rem;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--bg-warm);
+            color: var(--text-medium);
+            border-radius: 20px;
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--text-dark);
+            color: var(--primary-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* 回到顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.4);
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .category-nav {
+                padding: 0.75rem;
+                gap: 0.4rem;
+            }
+
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .product-info {
+                padding: 0.875rem;
+            }
+
+            .product-name {
+                font-size: 0.85rem;
+                -webkit-line-clamp: 2;
+            }
+
+            .product-price {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+        }
+
+        /* 加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>努力养猪咪</h1>
+        <p class="subtitle">中古饰品 · 复刻经典 · 独特品味</p>
+    </header>
+
+    <nav class="nav-container">
+        <div class="category-nav">
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="necklace">项链</button>
+            <button class="category-btn" data-category="earring">耳环</button>
+            <button class="category-btn" data-category="brooch">胸针</button>
+            <button class="category-btn" data-category="ring">戒指</button>
+            <button class="category-btn" data-category="bracelet">手链</button>
+            <button class="category-btn" data-category="set">套装</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- 项链类 -->
+        <section id="necklace" class="category-section">
+            <h2 class="section-title">项链类</h2>
+            <div class="product-grid">
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/QOBPLRZFAAAEU?imageSlim" alt="洗衣机猫夹尾巴胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古饰品复刻镀金镀真金洗衣机猫夹尾巴胸针胸花领针</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9</span>
+                            <span class="product-tag">胸针</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/ROBPLRZFAAAEU?imageSlim" alt="极光冷光米形珍珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">月岛手作｜出口欧洲手工重工奢华款极光冷光米形珍珠天然碎石项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">239.9</span>
+                            <span class="product-tag">重工款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/SKBPLRZFAAAEU?imageSlim" alt="仿绿松石吊坠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">黄铜电镀18k真金 仿绿松石吊坠复古戴妃款项链耳环</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">套装</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/SGBPLRZFAAAEU?imageSlim" alt="珐琅七彩蜻蜓锁骨链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">新中式小众复古珐琅七彩蜻蜓锁骨链轻奢高级感</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9起</span>
+                            <span class="product-tag">新中式</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/Q6BPLRZFAAAEU?imageSlim" alt="琉璃黑项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">岁月不败美人 琉璃黑项链长款vintage中古饰品镀金毛衣链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9起</span>
+                            <span class="product-tag">毛衣链</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/QWBPLRZFAAAEU?imageSlim" alt="凤眼密穿琉璃项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古vintage轻奢百搭款凤眼密穿搭配绿色莲子老料子琉璃项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9起</span>
+                            <span class="product-tag">老料子</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/QOBPLRZFAIAEU?imageSlim" alt="粉黛王妃套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">「粉黛王妃」复古珍珠贝珠手链项链套装镶钻奢华</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9起</span>
+                            <span class="product-tag">套装</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/QOBPLRZFAQAEU?imageSlim" alt="珐琅小马项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">珐琅小马绘画青金石串珠 项链耳环 小众设计度假风</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">度假风</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/LKB7LRZFAAAEU?imageSlim" alt="JBK繁花密钻项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vintage复古首饰JBK繁花密钻晚宴镀金蓝色奥地利水晶</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">晚宴款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/O6B7LRZFAAAEU?imageSlim" alt="天然石陶瓷拼接项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古图册款重磅天然石陶瓷拼接项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">139.9</span>
+                            <span class="product-tag">图册款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/WCB7LRZFAAAEU?imageSlim" alt="蝴蝶雕刻项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">桃乐丝李 中古vintage小众蝴蝶雕刻复古蓝英石项链胸针两用</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9</span>
+                            <span class="product-tag">两用款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/WKB7LRZFAAAEU?imageSlim" alt="南洋金珍珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">项链女神大溪地施家南洋金 澳白珍珠同款四色高品质</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">施家珠</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/X2B7LRZFAAAEU?imageSlim" alt="松石项链套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">复古vintage时髦松石项链手链套装 气质百搭</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">套装</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/YSB7LRZFAAAEU?imageSlim" alt="蓝色项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">蓝色项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9起</span>
+                            <span class="product-tag">百搭款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/7WB7LRZFAAAEU?imageSlim" alt="巴洛克玫瑰花项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古vintage巴洛克轻奢施家珠玫瑰花手工雕刻长款项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">手工款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/COCPLRZFAAAEU?imageSlim" alt="粉蓝彩钻多层项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">可旋转粉蓝彩钻复古多层项链绝美小众金色原创</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9起</span>
+                            <span class="product-tag">原创款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/ECCPLRZFAAAEU?imageSlim" alt="琉璃奥地利水晶项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage古董首饰琉璃奥地利水晶重工镀金项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9</span>
+                            <span class="product-tag">重工款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/HWCPLRZFAAAEU?imageSlim" alt="莲花珍珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古打标莲花珍珠复古项链手链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">打标款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/XCCPLRZFAAAEU?imageSlim" alt="鸽血红宝石项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">锆石项链耳钉套装银镶优化合成无烧红宝石鸽血红宝石</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">宝石款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/ZOCPLRZFAAAEU?imageSlim" alt="天然珍花瓣珍珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">烟暖雨初收 中古文艺原创天然珍花瓣珍珠项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">139.9</span>
+                            <span class="product-tag">文艺款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/26CPLRZFAAAEU?imageSlim" alt="莫奈书册款项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">宫廷复古中古vintage复刻莫奈书册款编织小众金色项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9起</span>
+                            <span class="product-tag">莫奈款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/4CCPLRZFAAAEU?imageSlim" alt="绿玛瑙串珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">明星同款天然绿玛瑙串珠项链配饰女高级感小众锁骨链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">明星款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/7SCPLRZFAAAEU?imageSlim" alt="四叶草水晶项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古意大利复刻四叶草红色水晶项链耳夹</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">四叶草</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/GKC7LRZFAAAEU?imageSlim" alt="贝壳雏菊项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">贝壳雏菊项链欧美小众设计复古不规则轻奢花朵</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">小众款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/ISC7LRZFAAAEU?imageSlim" alt="复古小象锁骨链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">小众设计 椭圆绿松合成石复古小象文艺镀金OT扣锁骨链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9</span>
+                            <span class="product-tag">小象款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/K2C7LRZFAAAEU?imageSlim" alt="tirfari香槟金项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vintage中古饰品tirfari打标香槟金琉璃珍珠短款项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9</span>
+                            <span class="product-tag">打标款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/N6C7LRZFAAAEU?imageSlim" alt="15克拉水晶钻项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古风珍珠项链配15克拉k9玻璃水晶钻项链耳环配套</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">水晶款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/QKC7LRZFAAAEU?imageSlim" alt="五彩珠爱心项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">波西米亚度假夏日ins风五彩珠爱心项链BrinkerEliza复刻</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9</span>
+                            <span class="product-tag">波西米亚</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/T6C7LRZFAAAEU?imageSlim" alt="天然绿玛瑙项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">天然绿玛瑙串珠项链配饰女高级感小众锁骨链新中式</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">新中式</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/XSC7LRZFAAAEU?imageSlim" alt="香水瓶土星项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">西家密室香水瓶项链土星珍珠锁骨链毛衣链亚克力</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9</span>
+                            <span class="product-tag">土星款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/46C7LRZFAAAEU?imageSlim" alt="麦头珍珠东陵玉石项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">朗睦天然麦头珍珠东陵玉石春季夏季个性串珠手工新中式</h3>
+                        <div class="product-footer">
+                            <span class="product-price">159.9</span>
+                            <span class="product-tag">手工款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/7OC7LRZFAAAEU?imageSlim" alt="红绿撞色琉璃项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">法国宝家复刻复古经典红绿撞色琉璃珍珠水晶天然石项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">139.9</span>
+                            <span class="product-tag">撞色款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/BCDPLRZFAAAEU?imageSlim" alt="奥地利水晶手链耳环" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vintage-S4复古董首饰琉璃奥地利水晶重工复古老金工艺</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">老金工艺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/GODPLRZFAAAEU?imageSlim" alt="贝母手链项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">原创设计贝母手链女小众铜镀真金夏网红同款项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">139.9起</span>
+                            <span class="product-tag">原创款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/GODPLRZFAIAEU?imageSlim" alt="黄水晶发晶项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">串珠项链合集 天然黄水晶发晶项链手链手工设计国古风</h3>
+                        <div class="product-footer">
+                            <span class="product-price">39.9起</span>
+                            <span class="product-tag">古风款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/JCDPLRZFAAAEU?imageSlim" alt="老琉璃粉点翠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">老琉璃粉点翠蛙皮项链耳环女士复古手工天然珍珠</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">点翠款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/WWDPLRZFAAAEU?imageSlim" alt="90年代回流宝石项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage90年代回流款中古复刻宝石项链耳钉</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">回流款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/W6DPLRZFAAAEU?imageSlim" alt="琉璃黄铜镂空项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古vintage复古宫廷风琉璃黄铜镂空彩色琉璃轻奢项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">宫廷风</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/6CDPLRZFAAAEU?imageSlim" alt="法国笛奥纪家项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古项链法国笛奥纪家德制grosse 精致复古董首饰品</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9起</span>
+                            <span class="product-tag">德制款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/AOD7LRZFAAAEU?imageSlim" alt="宝家小鱼套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">宝家小鱼套装黄铜蜡镶嵌锆石琉璃手链项链套装</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9起</span>
+                            <span class="product-tag">套装</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/V2D7LRZFAAAEU?imageSlim" alt="蓝色小象吊坠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">蓝色小象吊坠项链女天然贝壳串珠锁骨链小众高级感</h3>
+                        <div class="product-footer">
+                            <span class="product-price">89.9</span>
+                            <span class="product-tag">小象款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/ZGD7LRZFAAAEU?imageSlim" alt="马卡龙彩色琉璃套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage重工双面椭圆马卡龙彩色琉璃手链项链套装</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9起</span>
+                            <span class="product-tag">马卡龙</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/SGEPLRZFAAAEU?imageSlim" alt="巴洛克香家珍珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">sommo巴洛克香家珍珠项链不规则配饰锁骨链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">巴洛克</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/EOEPLRZFAAAEU?imageSlim" alt="彩色宝石套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">复古vintage彩色宝石套装优雅重工经典项链手链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">宝石款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/GGEPLRZFAAAEU?imageSlim" alt="大珍珠浮雕牌项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">夸张长款大珍珠浮雕牌项链多层轻奢小众旗袍毛衣链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">浮雕款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/LSEPLRZFAAAEU?imageSlim" alt="多层珍珠琉璃项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古vintage多层珍珠琉璃项链欧美重工镀24k金</h3>
+                        <div class="product-footer">
+                            <span class="product-price">159.9</span>
+                            <span class="product-tag">24k镀金</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/7GEPLRZFAAAEU?imageSlim" alt="扇形镂空项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">欧美复古做旧轻奢扇形镂空项链生日耳环水晶锆石套装</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9起</span>
+                            <span class="product-tag">镂空款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/KGE7LRZFAAAEU?imageSlim" alt="素金项链套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古Vintage素金项链颈链 手链套装18K温金电镀</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9起</span>
+                            <span class="product-tag">素金款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/N6E7LRZFAAAEU?imageSlim" alt="J家项链合辑" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">J家项链合辑 正品法国复刻镶钻日常复古搭配</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">J家款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/R2E7LRZFAAAEU?imageSlim" alt="莱茵石胸针项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage海外回流复刻国内现货白色系莱茵石胸针可拆卸项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">179.9</span>
+                            <span class="product-tag">可拆卸</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/SGE7LRZFAAAEU?imageSlim" alt="麦穗胸针耳钉" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">麦穗中古欧美时尚气质胸针女风胸花耳钉配套</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">麦穗款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/F2FPLRZFAAAEU?imageSlim" alt="印第安酋长胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Napier美产老货黄铜片印第安酋长埃及圣甲老鹰翅膀胸针</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">Napier</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/6KE7LRZFAAAEU?imageSlim" alt="施家双层珍珠项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">施家双层珍珠项链女2025新款爆款正品叠戴锁骨链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9</span>
+                            <span class="product-tag">双层款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/AWFPLRZFAAAEU?imageSlim" alt="华纳橘色琉璃耳钉" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">JosephWarner华纳耳钉女古橘色琉璃原创复刻小众中古</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">华纳款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/RKFPLRZFAAAEU?imageSlim" alt="Trifari琉璃胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">罕见 美国Trifari琉璃胸针手链项链复古</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">Trifari</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/LSGPLRZFAAAEU?imageSlim" alt="紫色蛙皮穆拉诺琉璃" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古老料子紫色蛙皮穆拉诺琉璃项链耳环手串套装</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">穆拉诺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/MCGPLRZFAAAEU?imageSlim" alt="菲利普大桃心套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">法国专柜复刻法国菲利普琉璃树脂大桃心项链胸针耳饰套装</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">桃心款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/6WGPLRZFAAAEU?imageSlim" alt="绿色松石套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">设计师款绿色松石项链耳钉套装 中古vintage锁骨链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">松石款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/66GPLRZFAAAEU?imageSlim" alt="珍珠短款套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vintage中古项链耳环套装复刻珍珠短款手链铜镀真金</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">短款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/AWG7LRZFAAAEU?imageSlim" alt="D家chocker" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古项链vintage加拿大D家chocker复刻锁骨链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">D家款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="necklace">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/CSG7LRZFAAAEU?imageSlim" alt="古法金彩色宝石项链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintag中古古法金黄铜手工雕刻彩色宝石项链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">古法金</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 耳环类 -->
+        <section id="earring" class="category-section">
+            <h2 class="section-title">耳环/耳饰类</h2>
+            <div class="product-grid">
+                <div class="product-card" data-category="earring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/3KDPLRZFAAAEU?imageSlim" alt="罗马编织纹理耳环" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">经典罗马编织纹理C型简约耳环925银针18k设计感耳钉</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9</span>
+                            <span class="product-tag">罗马纹</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="earring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/CKD7LRZFAAAEU?imageSlim" alt="天然石水晶琉璃耳夹" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古的耳饰天然石水晶琉璃耳夹</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9</span>
+                            <span class="product-tag">耳夹款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="earring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/MOD7LRZFAAAEU?imageSlim" alt="珐琅花朵爱心耳夹" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古纯手工雕刻珐琅花朵爱心耳夹钉</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9</span>
+                            <span class="product-tag">手工款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="earring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/SCEPLRZFAAAEU?imageSlim" alt="绝美蓝色珍珠耳钉" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">绝美蓝色！珍珠耳钉复古法式高级感2025新款小众设计</h3>
+                        <div class="product-footer">
+                            <span class="product-price">26.9起</span>
+                            <span class="product-tag">法式款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="earring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/HYCAHSBFABAE6?imageSlim" alt="纪梵家复古耳环" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古饰品纪梵家vintage大尺寸复古大牌耳环银针</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9</span>
+                            <span class="product-tag">大牌款</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 胸针类 -->
+        <section id="brooch" class="category-section">
+            <h2 class="section-title">胸针/胸花类</h2>
+            <div class="product-grid">
+                <div class="product-card" data-category="brooch">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/XSFPLRZFAAAEU?imageSlim" alt="果冻肚皮花朵胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">英国SPHINX果冻肚皮花朵胸针 复古宫廷中古西洋vintage复刻</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9</span>
+                            <span class="product-tag">SPHINX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="brooch">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/XOFPLRZFAAAEU?imageSlim" alt="佛罗伦萨龙息石胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古雅芳avon佛罗伦萨龙息石镂空吊坠仿水晶绿叶胸针</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9</span>
+                            <span class="product-tag">雅芳款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="brooch">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/2OFPLRZFAAAEU?imageSlim" alt="珐琅工艺胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古Vintage胸针珐琅工艺搭配两色复古滴釉感胸花别针</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9</span>
+                            <span class="product-tag">珐琅款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="brooch">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/FKGPLRZFAAAEU?imageSlim" alt="宝家简章胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">宝家70年代款件简章胸针欧产复刻必拍款秋冬佩戴饰品</h3>
+                        <div class="product-footer">
+                            <span class="product-price">199.9</span>
+                            <span class="product-tag">简章款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="brooch">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/PGF7LRZFAAAEU?imageSlim" alt="白珐琅猫头鹰胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">D'orlan白珐琅猫头鹰胸针 Vintage中古首饰</h3>
+                        <div class="product-footer">
+                            <span class="product-price">79.9</span>
+                            <span class="product-tag">猫头鹰</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="brooch">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/Q2F7LRZFAAAEU?imageSlim" alt="小雏菊胸针" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">5025有标Mo*net小雏菊胸针 vintage中古首饰回流复刻款</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9</span>
+                            <span class="product-tag">小雏菊</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 戒指类 -->
+        <section id="ring" class="category-section">
+            <h2 class="section-title">戒指类</h2>
+            <div class="product-grid">
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/R6CPLRZFAAAEU?imageSlim" alt="蓝色琉璃戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">中古vintage时尚高级感复古轻奢小众蓝色琉璃戒指</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9</span>
+                            <span class="product-tag">琉璃款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/S6DPLRZFAAAEU?imageSlim" alt="宝格丽复刻戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">bao格丽中古复刻戒指欧美vintage宫廷风指环</h3>
+                        <div class="product-footer">
+                            <span class="product-price">89.9</span>
+                            <span class="product-tag">宝格丽风</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/V6DPLRZFAAAEU?imageSlim" alt="白贝母复古戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">美国进口素沫法国白贝母手工复古戒指</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9</span>
+                            <span class="product-tag">贝母款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/JCE7LRZFAAAEU?imageSlim" alt="雕花双花戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古风意大利工艺雕花开口双花戒指设计原创款</h3>
+                        <div class="product-footer">
+                            <span class="product-price">89.9</span>
+                            <span class="product-tag">开口款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/P2F7LRZFAAAEU?imageSlim" alt="蕾丝祖母绿戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">意大利宫廷风复古戒指轻奢高级感镂空花纹蕾丝祖母绿</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9</span>
+                            <span class="product-tag">蕾丝款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/R2F7LRZFAAAEU?imageSlim" alt="螺纹锆石蛇戒" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">18K真金电镀开��螺纹锆石戒指 蛇戒个性宽版食指戒</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9</span>
+                            <span class="product-tag">蛇戒</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/ISGPLRZFAAAEU?imageSlim" alt="韧竹竹节戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">小众设计珠宝韧竹竹节戒指通勤开口戒节节高升</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9</span>
+                            <span class="product-tag">竹节款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/KCGPLRZFAAAEU?imageSlim" alt="布契拉提珍珠戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">布契拉T的独特风格魅力双色电镀真金黄铜珍珠戒指</h3>
+                        <div class="product-footer">
+                            <span class="product-price">59.9</span>
+                            <span class="product-tag">双色款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/NKGPLRZFAAAEU?imageSlim" alt="圆形镶钻开口戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">欧美小众圆形镶钻简约开口戒指ins几何镀金冷淡风</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9</span>
+                            <span class="product-tag">冷淡风</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="ring">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/U2GPLRZFAAAEU?imageSlim" alt="织纹雕金戒指" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">意大利复刻工艺布织纹雕金工艺电镀镀18K金精美古典</h3>
+                        <div class="product-footer">
+                            <span class="product-price">29.9</span>
+                            <span class="product-tag">织纹款</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 手链类 -->
+        <section id="bracelet" class="category-section">
+            <h2 class="section-title">手链/手串类</h2>
+            <div class="product-grid">
+                <div class="product-card" data-category="bracelet">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/YSFPLRZFAAAEU?imageSlim" alt="琉璃奥地利水晶手链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage中古手链小众设计感个性饰品手串琉璃奥地利水晶镀金</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9</span>
+                            <span class="product-tag">奥地利</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="bracelet">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/Z2F7LRZFAAAEU?imageSlim" alt="花朵锆石转转手链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">美在心尖儿上富贵花宝石项链 璨若星河 镀18K金 花朵锆石转转手链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">39.9起</span>
+                            <span class="product-tag">转转款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="bracelet">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/UCEPLRZFAAAEU?imageSlim" alt="表带百搭手链" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">欧美小众轻奢简约表带百搭手链ins冷淡风网红复古</h3>
+                        <div class="product-footer">
+                            <span class="product-price">129.9</span>
+                            <span class="product-tag">表带款</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 套装类 -->
+        <section id="set" class="category-section">
+            <h2 class="section-title">套装类（多件组合）</h2>
+            <div class="product-grid">
+                <div class="product-card" data-category="set">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/RGD7LRZFAAAEU?imageSlim" alt="POGGI珍珠套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">法国POGGI珍珠多层水晶小米珠choker复刻品套装手链戒指项链耳环</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">POGGI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="set">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/BSF7LRZFAAAEU?imageSlim" alt="珍珠海洋套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">vintage kjl 珍珠海洋胸针别针红套装古董复古欧美夸张手镯</h3>
+                        <div class="product-footer">
+                            <span class="product-price">99.9起</span>
+                            <span class="product-tag">KJL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="set">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/JKD7LRZFAAAEU?imageSlim" alt="琉璃卡梅奥套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vintage复古董首饰琉璃卡梅奥珐琅华丽手链</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">卡梅奥</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="set">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/TWEPLRZFAAAEU?imageSlim" alt="爱心珠宝套装" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">爱心珠宝真空黄铜电镀 k金锆石爱心锁骨链项链手链耳环配套中古风</h3>
+                        <div class="product-footer">
+                            <span class="product-price">69.9起</span>
+                            <span class="product-tag">爱心款</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="set">
+                    <div class="image-wrapper">
+                        <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/KOFPLRZFAAAEU?imageSlim" alt="全球小众戒指合集" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">全球小众戒指合集正品进口彩宝法式复古轻奢礼物朴彩英明星同款</h3>
+                        <div class="product-footer">
+                            <span class="product-price">49.9起</span>
+                            <span class="product-tag">明星款</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-text">努力养猪咪 · 中古饰品精选 · 每一件都是时光的礼物</p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // 分类筛选功能
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        const sections = document.querySelectorAll('.category-section');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 更新按钮状态
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+
+                if (category === 'all') {
+                    // 显示所有分类
+                    sections.forEach(section => section.style.display = 'block');
+                    productCards.forEach(card => card.classList.remove('hidden'));
+                } else {
+                    // 只显示选中分类的商品
+                    sections.forEach(section => {
+                        const hasVisibleCards = section.querySelectorAll(`[data-category="${category}"]`).length > 0;
+                        section.style.display = hasVisibleCards ? 'block' : 'none';
+                    });
+
+                    productCards.forEach(card => {
+                        if (card.dataset.category === category) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                }
+
+                // 滚动到内容区
+                document.querySelector('.container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // 回到顶部功能
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 图片懒加载优化
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.product-image').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
