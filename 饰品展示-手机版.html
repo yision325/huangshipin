@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2C2416">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>努力养猪咪 | 中古饰品精选</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #8B7355;
+            --primary-light: #D4C4B0;
+            --accent: #C9A96E;
+            --bg-cream: #FAF8F5;
+            --bg-warm: #F5F0E8;
+            --text-dark: #2C2416;
+            --text-medium: #5C4D3C;
+            --text-light: #8B7D6B;
+            --shadow: rgba(139, 115, 85, 0.1);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: calc(70px + var(--safe-bottom));
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* 头部 - 手机优化 */
+        header {
+            background: linear-gradient(135deg, #2C2416 0%, #4A3C2A 100%);
+            color: #fff;
+            padding: 1.5rem 1rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: var(--primary-light);
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* 搜索栏 - 手机端 */
+        .search-container {
+            background: #fff;
+            padding: 0.75rem 1rem;
+            position: sticky;
+            top: 68px;
+            z-index: 99;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg-warm);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-light);
+        }
+
+        .search-icon {
+            color: var(--text-light);
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .search-clear {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0 0.25rem;
+            display: none;
+        }
+
+        .search-clear.show {
+            display: block;
+        }
+
+        /* 横向滚动分类 - 手机优化 */
+        .category-scroll {
+            background: #fff;
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 123px;
+            z-index: 98;
+            box-shadow: 0 2px 10px var(--shadow);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-list {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 1rem;
+            width: max-content;
+        }
+
+        .category-chip {
+            padding: 0.5rem 1rem;
+            border: 1.5px solid var(--primary-light);
+            background: #fff;
+            color: var(--text-medium);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .category-chip:active {
+            transform: scale(0.95);
+        }
+
+        .category-chip.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* 统计信息 */
+        .stats-bar {
+            background: linear-gradient(90deg, var(--primary-light) 0%, var(--bg-warm) 100%);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            color: var(--text-medium);
+            text-align: center;
+            position: sticky;
+            top: 171px;
+            z-index: 97;
+        }
+
+        /* 主体内容 */
+        .container {
+            padding: 0.75rem;
+        }
+
+        /* 分类标题 */
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 1.5rem 0.5rem 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+        }
+
+        .section-title::before {
+            content: '◆';
+            color: var(--accent);
+            font-size: 0.7rem;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* 商品网格 - 手机两列 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        /* 商品卡片 - 手机优化 */
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 20px rgba(139, 115, 85, 0.2);
+        }
+
+        .product-card.hidden {
+            display: none;
+        }
+
+        /* 图片容器 - 正方形 */
+        .image-wrapper {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%);
+        }
+
+        .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:active .product-image {
+            transform: scale(1.05);
+        }
+
+        /* 快速操作按钮 */
+        .quick-actions {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            display: flex;
+            gap: 0.4rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .product-card:active .quick-actions {
+            opacity: 1;
+        }
+
+        .quick-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* 商品信息 */
+        .product-info {
+            padding: 0.75rem;
+        }
+
+        .product-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-price::before {
+            content: '¥';
+            font-size: 0.8rem;
+        }
+
+        .product-tag {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-warm);
+            color: var(--text-medium);
+            border-radius: 12px;
+        }
+
+        /* 底部导航栏 - 手机专属 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0 calc(0.5rem + var(--safe-bottom));
+            z-index: 1000;
+            border-top: 1px solid var(--primary-light);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            padding: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .nav-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+
+        /* 回到顶部按钮 - 手机优化 */
+        .back-to-top {
+            position: fixed;
+            bottom: calc(80px + var(--safe-bottom));
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.4);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.9);
+            background: var(--accent);
+        }
+
+        /* 加载更多 */
+        .load-more {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        .load-more-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .load-more-btn:active {
+            transform: scale(0.95);
+            background: var(--accent);
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-light);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-text {
+            font-size: 0.9rem;
+        }
+
+        /* 商品详情弹窗 - 手机全屏 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-height: 85vh;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 1.25rem;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .modal-price {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .modal-price::before {
+            content: '¥';
+            font-size: 1rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+        }
+
+        /* 骨架屏 */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* 浮动联系按钮 */
+        .fab-contact {
+            position: fixed;
+            bottom: calc(140px + var(--safe-bottom));
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            transition: all 0.3s ease;
+        }
+
+        .fab-contact:active {
+            transform: scale(0.9);
+        }
+
+        /* 提示 toast */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 3000;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* 加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <h1>努力养猪咪</h1>
+        <p class="subtitle">中古饰品 · 复刻经典</p>
+    </header>
+
+    <!-- 搜索栏 -->
+    <div class="search-container">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="搜索饰品名称...">
+            <span class="search-clear" id="searchClear">×</span>
+        </div>
+    </div>
+
+    <!-- 分类横向滚动 -->
+    <div class="category-scroll">
+        <div class="category-list">
+            <button class="category-chip active" data-category="all">全部</button>
+            <button class="category-chip" data-category="necklace">项链</button>
+            <button class="category-chip" data-category="earring">耳环</button>
+            <button class="category-chip" data-category="brooch">胸针</button>
+            <button class="category-chip" data-category="ring">戒指</button>
+            <button class="category-chip" data-category="bracelet">手链</button>
+            <button class="category-chip" data-category="set">套装</button>
+        </div>
+    </div>
+
+    <!-- 统计栏 -->
+    <div class="stats-bar" id="statsBar">
+        共 <strong>70+</strong> 款精选饰品
+    </div>
+
+    <!-- 主体内容 -->
+    <main class="container" id="mainContainer">
+        <!-- 项链类 -->
+        <section id="necklace-section" data-category="necklace">
+            <h2 class="section-title">项链类</h2>
+            <div class="product-grid" id="necklace-grid"></div>
+        </section>
+
+        <!-- 耳环类 -->
+        <section id="earring-section" data-category="earring">
+            <h2 class="section-title">耳环/耳饰类</h2>
+            <div class="product-grid" id="earring-grid"></div>
+        </section>
+
+        <!-- 胸针类 -->
+        <section id="brooch-section" data-category="brooch">
+            <h2 class="section-title">胸针/胸花类</h2>
+            <div class="product-grid" id="brooch-grid"></div>
+        </section>
+
+        <!-- 戒指类 -->
+        <section id="ring-section" data-category="ring">
+            <h2 class="section-title">戒指类</h2>
+            <div class="product-grid" id="ring-grid"></div>
+        </section>
+
+        <!-- 手链类 -->
+        <section id="bracelet-section" data-category="bracelet">
+            <h2 class="section-title">手链/手串类</h2>
+            <div class="product-grid" id="bracelet-grid"></div>
+        </section>
+
+        <!-- 套装类 -->
+        <section id="set-section" data-category="set">
+            <h2 class="section-title">套装类</h2>
+            <div class="product-grid" id="set-grid"></div>
+        </section>
+
+        <!-- 空状态 -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">🔍</div>
+            <p class="empty-text">没有找到相关饰品</p>
+        </div>
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <a class="nav-item active" data-nav="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">首页</span>
+        </a>
+        <a class="nav-item" data-nav="category">
+            <span class="nav-icon">📂</span>
+            <span class="nav-label">分类</span>
+        </a>
+        <a class="nav-item" data-nav="favorites">
+            <span class="nav-icon">❤️</span>
+            <span class="nav-label">收藏</span>
+        </a>
+        <a class="nav-item" data-nav="contact">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">联系</span>
+        </a>
+    </nav>
+
+    <!-- 回到顶部 -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- 联系浮动按钮 -->
+    <button class="fab-contact" id="fabContact" title="联系我">💬</button>
+
+    <!-- 商品详情弹窗 -->
+    <div class="modal-overlay" id="productModal">
+        <button class="modal-close" id="modalClose">×</button>
+        <div class="modal-content">
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-info">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <div class="modal-price" id="modalPrice"></div>
+                <p style="color: var(--text-medium); font-size: 0.85rem; line-height: 1.6;">
+                    如需购买或了解更多详情，请点击下方"联系我"按钮咨询。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // 商品数据
+        const products = {
+            necklace: [
+                { name: "中古饰品复刻镀金洗衣机猫夹尾巴胸针", price: "69.9", tag: "胸针", image: "QOBPLRZFAAAEU" },
+                { name: "月岛手作｜出口欧洲手工重工奢华款极光冷光米形珍珠项链", price: "239.9", tag: "重工款", image: "ROBPLRZFAAAEU" },
+                { name: "黄铜电镀18k真金 仿绿松石吊坠复古戴妃款项链", price: "99.9起", tag: "套装", image: "SKBPLRZFAAAEU" },
+                { name: "新中式小众复古珐琅七彩蜻蜓锁骨链", price: "79.9起", tag: "新中式", image: "SGBPLRZFAAAEU" },
+                { name: "岁月不败美人 琉璃黑项链长款vintage毛衣链", price: "79.9起", tag: "毛衣链", image: "Q6BPLRZFAAAEU" },
+                { name: "中古vintage轻奢凤眼密穿绿色莲子老料子琉璃", price: "129.9起", tag: "老料子", image: "QWBPLRZFAAAEU" },
+                { name: "「粉黛王妃」复古珍珠贝珠手链项链套装", price: "129.9起", tag: "套装", image: "QOBPLRZFAIAEU" },
+                { name: "珐琅小马绘画青金石串珠项链耳环", price: "69.9起", tag: "度假风", image: "QOBPLRZFAQAEU" },
+                { name: "Vintage复古首饰JBK繁花密钻晚宴镀金蓝色奥地利水晶", price: "69.9起", tag: "晚宴款", image: "LKB7LRZFAAAEU" },
+                { name: "vintage中古图册款重磅天然石陶瓷拼接项链", price: "139.9", tag: "图册款", image: "O6B7LRZFAAAEU" },
+                { name: "桃乐丝李 中古vintage蝴蝶雕刻蓝英石项链胸针两用", price: "129.9", tag: "两用款", image: "WCB7LRZFAAAEU" },
+                { name: "项链女神大溪地施家南洋金澳白珍珠四色套装", price: "49.9起", tag: "施家珠", image: "WKB7LRZFAAAEU" },
+                { name: "复古vintage时髦松石项链手链套装", price: "99.9起", tag: "套装", image: "X2B7LRZFAAAEU" },
+                { name: "蓝色项链", price: "79.9起", tag: "百搭款", image: "YSB7LRZFAAAEU" },
+                { name: "中古vintage巴洛克施家珠玫瑰花手工雕刻长款", price: "69.9起", tag: "手工款", image: "7WB7LRZFAAAEU" },
+                { name: "可旋转粉蓝彩钻复古多层项链金色原创", price: "129.9起", tag: "原创款", image: "COCPLRZFAAAEU" },
+                { name: "vintage古董首饰琉璃奥地利水晶重工镀金", price: "129.9", tag: "重工款", image: "ECCPLRZFAAAEU" },
+                { name: "vintage中古打标莲花珍珠复古项链手链", price: "99.9起", tag: "打标款", image: "HWCPLRZFAAAEU" },
+                { name: "锆石项链耳钉套装银镶红宝石鸽血红", price: "69.9起", tag: "宝石款", image: "XCCPLRZFAAAEU" },
+                { name: "烟暖雨初收 中古文艺天然珍花瓣珍珠项链", price: "139.9", tag: "文艺款", image: "ZOCPLRZFAAAEU" },
+                { name: "宫廷复古中古vintage复刻莫奈书册款编织", price: "129.9起", tag: "莫奈款", image: "26CPLRZFAAAEU" },
+                { name: "明星同款天然绿玛瑙串珠项链锁骨链", price: "69.9起", tag: "明星款", image: "4CCPLRZFAAAEU" },
+                { name: "vintage中古意大利复刻四叶草红色水晶", price: "69.9起", tag: "四叶草", image: "7SCPLRZFAAAEU" },
+                { name: "贝壳雏菊项链欧美小众设计复古", price: "69.9起", tag: "小众款", image: "GKC7LRZFAAAEU" },
+                { name: "小众设计椭圆绿松合成石复古小象OT扣", price: "79.9", tag: "小象款", image: "ISC7LRZFAAAEU" },
+                { name: "Vintage中古饰品tirfari打标香槟金琉璃", price: "69.9", tag: "打标款", image: "K2C7LRZFAAAEU" },
+                { name: "中古风珍珠项链配15克拉k9玻璃水晶钻", price: "99.9起", tag: "水晶款", image: "N6C7LRZFAAAEU" },
+                { name: "波西米亚度假夏日ins风五彩珠爱心项链", price: "129.9", tag: "波西米亚", image: "QKC7LRZFAAAEU" },
+                { name: "天然绿玛瑙串珠项链锁骨链新中式", price: "69.9起", tag: "新中式", image: "T6C7LRZFAAAEU" },
+                { name: "西家密室香水瓶项链土星珍珠锁骨链", price: "69.9", tag: "土星款", image: "XSC7LRZFAAAEU" },
+                { name: "朗睦天然麦头珍珠东陵玉石新中式", price: "159.9", tag: "手工款", image: "46C7LRZFAAAEU" },
+                { name: "法国宝家复刻复古红绿撞色琉璃珍珠", price: "139.9", tag: "撞色款", image: "7OC7LRZFAAAEU" },
+                { name: "Vintage-S4复古琉璃奥地利水晶老金工艺", price: "69.9起", tag: "老金工艺", image: "BCDPLRZFAAAEU" },
+                { name: "原创设计贝母手链铜镀真金网红同款", price: "139.9起", tag: "原创款", image: "GODPLRZFAAAEU" },
+                { name: "串珠项链合集天然黄水晶发晶国古风", price: "39.9起", tag: "古风款", image: "GODPLRZFAIAEU" },
+                { name: "老琉璃粉点翠蛙皮项链耳环复古手工", price: "69.9起", tag: "点翠款", image: "JCDPLRZFAAAEU" },
+                { name: "vintage90年代回流款中古复刻宝石项链", price: "69.9起", tag: "回流款", image: "WWDPLRZFAAAEU" },
+                { name: "中古vintage复古宫廷风琉璃黄铜镂空", price: "99.9起", tag: "宫廷风", image: "W6DPLRZFAAAEU" },
+                { name: "中古项链法国笛奥纪家德制grosse", price: "59.9起", tag: "德制款", image: "6CDPLRZFAAAEU" },
+                { name: "宝家小鱼套装黄铜蜡镶嵌锆石琉璃", price: "129.9起", tag: "套装", image: "AOD7LRZFAAAEU" },
+                { name: "蓝色小象吊坠项链天然贝壳串珠", price: "89.9", tag: "小象款", image: "V2D7LRZFAAAEU" },
+                { name: "vintage重工双面椭圆马卡龙彩色琉璃套装", price: "59.9起", tag: "马卡龙", image: "ZGD7LRZFAAAEU" },
+                { name: "sommo巴洛克香家珍珠项链不规则配饰", price: "69.9起", tag: "巴洛克", image: "SGEPLRZFAAAEU" },
+                { name: "复古vintage彩色宝石套装优雅重工", price: "99.9起", tag: "宝石款", image: "EOEPLRZFAAAEU" },
+                { name: "夸张长款大珍珠浮雕牌多层轻奢旗袍链", price: "69.9起", tag: "浮雕款", image: "GGEPLRZFAAAEU" },
+                { name: "中古vintage多层珍珠琉璃项链镀24k金", price: "159.9", tag: "24k镀金", image: "LSEPLRZFAAAEU" },
+                { name: "欧美复古做旧轻奢扇形镂空项链套装", price: "59.9起", tag: "镂空款", image: "7GEPLRZFAAAEU" },
+                { name: "中古Vintage素金项链颈链手链18K温金", price: "79.9起", tag: "素金款", image: "KGE7LRZFAAAEU" },
+                { name: "J家项链合辑正品法国复刻镶钻日常", price: "69.9起", tag: "J家款", image: "N6E7LRZFAAAEU" },
+                { name: "vintage海外回流白色系莱茵石胸针可拆卸", price: "179.9", tag: "可拆卸", image: "R2E7LRZFAAAEU" },
+                { name: "麦穗中古欧美时尚气质胸针风胸花耳钉", price: "49.9起", tag: "麦穗款", image: "SGE7LRZFAAAEU" },
+                { name: "Napier美产老货黄铜片印第安酋长胸针", price: "69.9起", tag: "Napier", image: "F2FPLRZFAAAEU" },
+                { name: "施家双层珍珠项链2025爆款叠戴锁骨链", price: "79.9", tag: "双层款", image: "6KE7LRZFAAAEU" },
+                { name: "JosephWarner华纳耳钉古橘色琉璃复刻", price: "99.9起", tag: "华纳款", image: "AWFPLRZFAAAEU" },
+                { name: "罕见美国Trifari琉璃胸针手链项链", price: "49.9起", tag: "Trifari", image: "RKFPLRZFAAAEU" },
+                { name: "中古老料子紫色蛙皮穆拉诺琉璃套装", price: "49.9起", tag: "穆拉诺", image: "LSGPLRZFAAAEU" },
+                { name: "法国菲利普琉璃树脂大桃心套装", price: "49.9起", tag: "桃心款", image: "MCGPLRZFAAAEU" },
+                { name: "设计师款绿色松石项链耳钉套装", price: "49.9起", tag: "松石款", image: "6WGPLRZFAAAEU" },
+                { name: "Vintage中古项链耳环套装复刻珍珠短款", price: "49.9起", tag: "短款", image: "66GPLRZFAAAEU" },
+                { name: "中古项链vintage加拿大D家chocker", price: "49.9起", tag: "D家款", image: "AWG7LRZFAAAEU" },
+                { name: "vintag中古古法金黄铜手工雕刻宝石", price: "99.9起", tag: "古法金", image: "CSG7LRZFAAAEU" }
+            ],
+            earring: [
+                { name: "经典罗马编织纹理C型简约耳环925银针", price: "59.9", tag: "罗马纹", image: "3KDPLRZFAAAEU" },
+                { name: "vintage中古耳饰天然石水晶琉璃耳夹", price: "59.9", tag: "耳夹款", image: "CKD7LRZFAAAEU" },
+                { name: "vintage中古纯手工雕刻珐琅花朵爱心耳夹", price: "99.9", tag: "手工款", image: "MOD7LRZFAAAEU" },
+                { name: "绝美蓝色！珍珠耳钉复古法式高级感", price: "26.9起", tag: "法式款", image: "SCEPLRZFAAAEU" },
+                { name: "中古饰品纪梵家vintage大尺寸复古耳环", price: "49.9", tag: "大牌款", image: "HYCAHSBFABAE6" }
+            ],
+            brooch: [
+                { name: "英国SPHINX果冻肚皮花朵胸针复古宫廷", price: "79.9", tag: "SPHINX", image: "XSFPLRZFAAAEU" },
+                { name: "vintage中古雅芳avon佛罗伦萨龙息石胸针", price: "69.9", tag: "雅芳款", image: "XOFPLRZFAAAEU" },
+                { name: "中古Vintage胸针珐琅工艺两色复古", price: "79.9", tag: "珐琅款", image: "2OFPLRZFAAAEU" },
+                { name: "宝家70年代款简章胸针欧产复刻必拍款", price: "199.9", tag: "简章款", image: "FKGPLRZFAAAEU" },
+                { name: "D'orlan白珐琅猫头鹰胸针", price: "79.9", tag: "猫头鹰", image: "PGF7LRZFAAAEU" },
+                { name: "5025有标Mo*net小雏菊胸针回流款", price: "129.9", tag: "小雏菊", image: "Q2F7LRZFAAAEU" }
+            ],
+            ring: [
+                { name: "中古vintage时尚高级感蓝色琉璃戒指", price: "59.9", tag: "琉璃款", image: "R6CPLRZFAAAEU" },
+                { name: "bao格丽中古复刻戒指欧美vintage宫廷风", price: "89.9", tag: "宝格丽风", image: "S6DPLRZFAAAEU" },
+                { name: "美国进口素沫法国白贝母手工复古戒指", price: "59.9", tag: "贝母款", image: "V6DPLRZFAAAEU" },
+                { name: "vintage中古风意大利工艺雕花开口双花", price: "89.9", tag: "开口款", image: "JCE7LRZFAAAEU" },
+                { name: "意大利宫廷风复古戒指蕾丝祖母绿", price: "49.9", tag: "蕾丝款", image: "P2F7LRZFAAAEU" },
+                { name: "18K真金电镀开口螺纹锆石蛇戒", price: "49.9", tag: "蛇戒", image: "R2F7LRZFAAAEU" },
+                { name: "小众设计珠宝韧竹竹节戒指通勤开口", price: "49.9", tag: "竹节款", image: "ISGPLRZFAAAEU" },
+                { name: "布契拉T双色电镀真金黄铜珍珠戒指", price: "59.9", tag: "双色款", image: "KCGPLRZFAAAEU" },
+                { name: "欧美小众圆形镶钻简约开口戒指冷淡风", price: "49.9", tag: "冷淡风", image: "NKGPLRZFAAAEU" },
+                { name: "意大利复刻工艺布织纹雕金电镀18K金", price: "29.9", tag: "织纹款", image: "U2GPLRZFAAAEU" }
+            ],
+            bracelet: [
+                { name: "vintage中古手链小众设计感琉璃奥地利水晶", price: "99.9", tag: "奥地利", image: "YSFPLRZFAAAEU" },
+                { name: "美在心尖儿上富贵花宝石镀18K金花朵锆石", price: "39.9起", tag: "转转款", image: "Z2F7LRZFAAAEU" },
+                { name: "欧美小众轻奢简约表带百搭手链冷淡风", price: "129.9", tag: "表带款", image: "UCEPLRZFAAAEU" }
+            ],
+            set: [
+                { name: "法国POGGI珍珠多层水晶小米珠choker套装", price: "69.9起", tag: "POGGI", image: "RGD7LRZFAAAEU" },
+                { name: "vintage kjl珍珠海洋胸针别针红套装", price: "99.9起", tag: "KJL", image: "BSF7LRZFAAAEU" },
+                { name: "Vintage复古董首饰琉璃卡梅奥珐琅华丽", price: "69.9起", tag: "卡梅奥", image: "JKD7LRZFAAAEU" },
+                { name: "爱心珠宝真空黄铜电镀k金锆石中古风", price: "69.9起", tag: "爱心款", image: "TWEPLRZFAAAEU" },
+                { name: "全球小众戒指合集进口彩宝法式复古轻奢", price: "49.9起", tag: "明星款", image: "KOFPLRZFAAAEU" }
+            ]
+        };
+
+        // 渲染商品
+        function renderProducts() {
+            Object.keys(products).forEach(category => {
+                const grid = document.getElementById(`${category}-grid`);
+                if (!grid) return;
+
+                grid.innerHTML = products[category].map((product, index) => `
+                    <div class="product-card" data-category="${category}" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}" style="animation-delay: ${index * 0.05}s">
+                        <div class="image-wrapper">
+                            <img src="https://qigesmd-1329163657.cos.ap-guangzhou.myqcloud.com/imgxd/${product.image}?imageSlim"
+                                 alt="${product.name}"
+                                 class="product-image"
+                                 loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-footer">
+                                <span class="product-price">${product.price}</span>
+                                <span class="product-tag">${product.tag}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            });
+
+            // 绑定卡片点击事件
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => openModal(card));
+            });
+        }
+
+        // 分类筛选
+        const categoryChips = document.querySelectorAll('.category-chip');
+        const sections = document.querySelectorAll('section[data-category]');
+
+        categoryChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                categoryChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+
+                const category = chip.dataset.category;
+
+                if (category === 'all') {
+                    sections.forEach(section => section.style.display = 'block');
+                    document.querySelectorAll('.product-card').forEach(card => card.classList.remove('hidden'));
+                    updateStats('all');
+                } else {
+                    sections.forEach(section => {
+                        section.style.display = section.dataset.category === category ? 'block' : 'none';
+                    });
+                    updateStats(category);
+                }
+
+                showToast(`已切换到：${chip.textContent}`);
+            });
+        });
+
+        // 更新统计
+        function updateStats(category) {
+            const statsBar = document.getElementById('statsBar');
+            let count = 0;
+
+            if (category === 'all') {
+                Object.values(products).forEach(arr => count += arr.length);
+                statsBar.innerHTML = `共 <strong>${count}</strong> 款精选饰品`;
+            } else {
+                count = products[category]?.length || 0;
+                const name = document.querySelector(`[data-category="${category}"].category-chip`)?.textContent || '';
+                statsBar.innerHTML = `${name}类共 <strong>${count}</strong> 款`;
+            }
+        }
+
+        // 搜索功能
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+
+        searchInput.addEventListener('input', (e) => {
+            const keyword = e.target.value.toLowerCase().trim();
+            searchClear.classList.toggle('show', keyword.length > 0);
+
+            filterProducts(keyword);
+        });
+
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchClear.classList.remove('show');
+            filterProducts('');
+        });
+
+        function filterProducts(keyword) {
+            const cards = document.querySelectorAll('.product-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const name = card.dataset.name.toLowerCase();
+                const tag = card.querySelector('.product-tag').textContent.toLowerCase();
+
+                if (name.includes(keyword) || tag.includes(keyword)) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // 显示/隐藏空状态
+            const emptyState = document.getElementById('emptyState');
+            const hasVisible = visibleCount > 0;
+            emptyState.style.display = hasVisible ? 'none' : 'block';
+
+            // 隐藏没有可见商品的分类标题
+            document.querySelectorAll('section[data-category]').forEach(section => {
+                const visibleCards = section.querySelectorAll('.product-card:not(.hidden)');
+                section.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+
+            // 更新统计
+            const statsBar = document.getElementById('statsBar');
+            if (keyword) {
+                statsBar.innerHTML = `搜索 "${keyword}" 找到 <strong>${visibleCount}</strong> 款`;
+            } else {
+                updateStats('all');
+            }
+        }
+
+        // 商品详情弹窗
+        const modal = document.getElementById('productModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+
+        function openModal(card) {
+            modalImage.src = card.querySelector('.product-image').src;
+            modalTitle.textContent = card.dataset.name;
+            modalPrice.textContent = card.dataset.price;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // 底部导航
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const nav = item.dataset.nav;
+
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                item.classList.add('active');
+
+                switch(nav) {
+                    case 'home':
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        break;
+                    case 'category':
+                        document.querySelector('.category-scroll').scrollIntoView({ behavior: 'smooth' });
+                        break;
+                    case 'favorites':
+                        showToast('收藏功能开发中...');
+                        break;
+                    case 'contact':
+                        contactSeller();
+                        break;
+                }
+            });
+        });
+
+        // 回到顶部
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 联系按钮
+        document.getElementById('fabContact').addEventListener('click', contactSeller);
+
+        function contactSeller() {
+            showToast('正在打开联系方式...');
+            // 这里可以替换为实际的联系方式
+            setTimeout(() => {
+                alert('微信号：请添加客服微信咨询购买\n（示例：请替换为真实联系方式）');
+            }, 500);
+        }
+
+        // Toast 提示
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // 初始化
+        renderProducts();
+        updateStats('all');
+
+        // 添加触摸滑动支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                const chips = Array.from(categoryChips);
+                const activeIndex = chips.findIndex(c => c.classList.contains('active'));
+
+                if (diff > 0 && activeIndex < chips.length - 1) {
+                    // 向左滑，下一个分类
+                    chips[activeIndex + 1].click();
+                } else if (diff < 0 && activeIndex > 0) {
+                    // 向右滑，上一个分类
+                    chips[activeIndex - 1].click();
+                }
+            }
+        }
+
+        // 防止图片拖拽
+        document.addEventListener('dragstart', e => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+    </script>
+</body>
+</html>
